@@ -19,7 +19,8 @@ export const CalculatorBtn = styled.div`
     -6px -6px 10px rgba(255, 255, 255, 0.5),
     6px 6px 8px rgba(255, 255, 255, 0.075), 6px 6px 10px rgba(0, 0, 0, 0.15);
 
-    transition:all 200ms;
+    transition:box-shadow 200ms;
+
   &:hover {
     box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6),
       -2px -2px 4px rgba(255, 255, 255, 0.4),

@@ -36,7 +36,7 @@ function apiCall(lon, lat) {
     })
     .then((data) => {
       apiResult = data;
-      //console.log(apiResult);
+      console.log(apiResult);
       temps.innerText = apiResult.current.weather[0].description;
       temperature.innerText = `${Math.trunc(apiResult.current.temp)}°`;
       localisation.innerText = apiResult.timezone;
