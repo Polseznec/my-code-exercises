@@ -9,14 +9,14 @@ function App() {
   const [savedValor, setSavedValor] = useState([]);
   const [screenDisplayer, setScreenDisplayer] = useState(0);
 
+  
+  const [prevValor, setPrevValor] = useState(0);
+  const [currentValor, setCurrentValor] = useState(0);
+
   const [number, setNumber] = useState(0);
-  const [mathValor, setMathValor] = useState(String);
+  const [operator, setOperator] = useState("");
 
   const handleNumber = (e) => {
-    // if (screenDisplayer === "/" || "x" || "-" || "+") {
-    //   setSavedValor([...savedValor, screenDisplayer.toString()]);
-    // }
-
     let event = e.target.innerHTML;
     if (number === 0) {
       setNumber(event);
@@ -25,13 +25,29 @@ function App() {
       setNumber(number + event);
       setScreenDisplayer(parseInt(number + event));
     }
+    switch (screenDisplayer) {
+      case "+":
+        setSavedValor([...savedValor, "+"]);
+        break;
+      case "-":
+        setSavedValor([...savedValor, "-"]);
+        break;
+      case "/":
+        setSavedValor([...savedValor, "/"]);
+        break;
+      case "x":
+        setSavedValor([...savedValor, "*"]);
+        break;
+    }
   };
 
-  const handleSymbole = (e) => {
+  const handleOperator = (e) => {
     setScreenDisplayer(e.target.innerHTML.toString());
     setSavedValor([...savedValor, parseInt(screenDisplayer)]);
     setNumber(0);
   };
+
+  const handleCompute = () => {};
 
   const handleReset = () => {
     setSavedValor([]);
@@ -39,12 +55,12 @@ function App() {
     setScreenDisplayer(0);
   };
 
-  console.log("------------------");
-  console.log("Valor => ", mathValor);
-  console.log("Number => ", number);
-  //console.log(typeof screenDisplayer);
-  console.log("Screen Displayer =>", screenDisplayer);
-  console.log("Saved Valor =>", savedValor);
+  // console.log("------------------");
+  // console.log("Valor => ", operator);
+  // console.log("Number => ", number);
+  // //console.log(typeof screenDisplayer);
+  // console.log("Screen Displayer =>", screenDisplayer);
+  // console.log("Saved Valor =>", savedValor);
 
   return (
     <AppContainer>
@@ -54,23 +70,23 @@ function App() {
         <CalculatorBtn onClick={handleNumber}>1</CalculatorBtn>
         <CalculatorBtn onClick={handleNumber}>2</CalculatorBtn>
         <CalculatorBtn onClick={handleNumber}>3</CalculatorBtn>
-        <CalculatorBtn onClick={handleSymbole}>/</CalculatorBtn>
+        <CalculatorBtn onClick={handleOperator}>/</CalculatorBtn>
         <div></div>
         <CalculatorBtn onClick={handleNumber}>4</CalculatorBtn>
         <CalculatorBtn onClick={handleNumber}>5</CalculatorBtn>
         <CalculatorBtn onClick={handleNumber}>6</CalculatorBtn>
-        <CalculatorBtn onClick={handleSymbole}>x</CalculatorBtn>
+        <CalculatorBtn onClick={handleOperator}>x</CalculatorBtn>
         <div></div>
         <CalculatorBtn onClick={handleNumber}>7</CalculatorBtn>
         <CalculatorBtn onClick={handleNumber}>8</CalculatorBtn>
         <CalculatorBtn onClick={handleNumber}>9</CalculatorBtn>
-        <CalculatorBtn onClick={handleSymbole}>-</CalculatorBtn>
+        <CalculatorBtn onClick={handleOperator}>-</CalculatorBtn>
         <div></div>
         <CalculatorBtn onClick={handleNumber}>,</CalculatorBtn>
         <CalculatorBtn onClick={handleNumber}>0</CalculatorBtn>
-        <CalculatorBtn onClick={handleNumber}>=</CalculatorBtn>
-        <CalculatorBtn onClick={handleSymbole}>+</CalculatorBtn>
-        <CalculatorBtn onClick={handleReset}>Rest</CalculatorBtn>
+        <CalculatorBtn onClick={handleCompute}>=</CalculatorBtn>
+        <CalculatorBtn onClick={handleOperator}>+</CalculatorBtn>
+        <CalculatorBtn onClick={handleReset}>Reset</CalculatorBtn>
       </Grid>
     </AppContainer>
   );
